@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof(Rigidbody2D))]
-
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float m_speed;
@@ -26,5 +24,10 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         transform.Translate(new Vector2(horizontal, vertical) * m_speed / 2500);
+    }
+
+    private void AnimationHandler()
+    {
+
     }
 }
