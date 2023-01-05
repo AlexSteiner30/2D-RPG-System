@@ -29,28 +29,13 @@ public class Speaking : MonoBehaviour
     private IEnumerator SpeakCoroutine(string msg)
     {
         continueButton.onClick.RemoveAllListeners();
-        continueButton.onClick.AddListener(ContinueButton);
+        continueButton.onClick.AddListener(GetComponent<NPC>().ContinueButton);
 
         for (int i = 0; i < msg.Length; i++)
         {
             text.text += msg[i];
 
             yield return new WaitForSeconds(.05f);
-        }
-    }
-
-    private void ContinueButton()
-    {
-        StopAllCoroutines();
-
-        if(++GetComponent<NPC>().eventCount < GetComponent<NPC>().events.Length)
-        {
-            GetComponent<NPC>().events[GetComponent<NPC>().eventCount].Invoke();
-        }
-
-        else
-        {
-            gameManager.dialogueBubble.SetActive(false);
         }
     }
 }

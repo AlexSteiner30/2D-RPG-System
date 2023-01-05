@@ -72,8 +72,10 @@ public class Asking : MonoBehaviour
     private void ReturnAnswer()
     {
         slider.gameObject.SetActive(false);
-
+        
         choosen = count;
+
+        GetComponent<NPC>().ContinueButton();
     }
 
     // Slider
@@ -85,13 +87,13 @@ public class Asking : MonoBehaviour
 
             if (hor != 0)
             {
-                if (hor >= 0 && count != 0) // up
+                if (hor >= 0 && count > 0) // up
                 {
                     slider.anchoredPosition += new Vector2(0, 50);
                     count--;
                 }
 
-                else if (hor <= 0 && count != question.options.Count) // down
+                else if (hor <= 0 && count < question.options.Count - 1) // down
                 {
                     slider.anchoredPosition -= new Vector2(0, 50);
                     count++;

@@ -30,7 +30,7 @@ public class Seller : MonoBehaviour
         }
         else
         {
-            speaking.Speak("So you next time");
+            speaking.Speak("See you next time");
         }
     }
 }

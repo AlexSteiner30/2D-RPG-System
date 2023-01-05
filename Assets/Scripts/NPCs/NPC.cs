@@ -13,4 +13,21 @@ public class NPC : MonoBehaviour
     {
         events[0].Invoke();
     }
+
+    public void ContinueButton()
+    {
+        GetComponent<Speaking>().StopAllCoroutines();
+        GetComponent<Asking>().StopAllCoroutines();
+        GetComponent<Seller>().StopAllCoroutines();
+
+        if (++GetComponent<NPC>().eventCount < GetComponent<NPC>().events.Length)
+        {
+            GetComponent<NPC>().events[GetComponent<NPC>().eventCount].Invoke();
+        }
+
+        else
+        {
+            GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().dialogueBubble.SetActive(false);
+        }
+    }
 }
