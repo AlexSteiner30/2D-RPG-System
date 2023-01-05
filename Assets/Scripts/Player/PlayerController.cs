@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<NPC>())
         {
+            collision.gameObject.GetComponent<NPC>().eventCount = 0;
+
             canInteract = false;
 
             npc = null;
