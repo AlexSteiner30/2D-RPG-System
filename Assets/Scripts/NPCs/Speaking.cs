@@ -43,6 +43,6 @@ public class Speaking : MonoBehaviour
     private void ContinueButton()
     {
         StopAllCoroutines();
-        GetComponent<NPC>().events[GetComponent<NPC>().eventCount].Invoke();
+        GetComponent<NPC>().events[++GetComponent<NPC>().eventCount].Invoke();
     }
 }

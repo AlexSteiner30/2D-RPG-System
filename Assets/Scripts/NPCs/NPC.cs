@@ -12,7 +12,5 @@ public class NPC : MonoBehaviour
     public void InvokeEvents()
     {
         events[0].Invoke();
-
-        eventCount++;
     }
 }
