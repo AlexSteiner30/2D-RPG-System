@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     GameObject npc;
-    public bool canInteract;
+    bool canInteract;
 
     private void Update()
     {
