@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject dialogueBubble;
+
     public Button continueButton;
+    public RectTransform slider;
     public Text message;
 }

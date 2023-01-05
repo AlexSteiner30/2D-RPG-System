@@ -7,38 +7,50 @@ using UnityEngine.UI;
 
 public class Asking : MonoBehaviour
 {
-    [SerializeField] private Question question;
+    [SerializeField] private Question questionNormal;
+    [SerializeField] private QuestionQuiz questionQuiz;
 
     GameManager gameManager;
+
     Button continueButton;
+    RectTransform slider;
     Text text;
 
-
-    bool running = false;
+    int count = 0;
 
     private void Awake()
     {
         gameManager = GameObject.FindWithTag("Game Manager").GetComponent<GameManager>();
+
         text = gameManager.message;
         continueButton = gameManager.continueButton;
+        slider = gameManager.slider;
     }
 
-    public void Ask(string msg)
+    // Quiz
+    public void AskQuiz(string msg)
     {
         GetComponent<Speaking>().Speak(msg);
         continueButton.onClick.RemoveAllListeners();
-        continueButton.onClick.AddListener(AskQuestion);
+        continueButton.onClick.AddListener(AskQuestionQuiz);
     }
 
-    private void AskQuestion()
+    private void AskQuestionQuiz()
     {
+        slider.gameObject.SetActive(true);
+
         text.text = "";
+
+        GetComponent<Speaking>().StopAllCoroutines();
+        StopAllCoroutines();
+
         StartCoroutine(WriteQuestionsCoroutine());
+        StartCoroutine(SliderMove());
     }
 
     private IEnumerator WriteQuestionsCoroutine()
     {
-        foreach (string q in question.question)
+        foreach (string q in questionQuiz.question)
         {
             text.text += "- ";
 
@@ -48,13 +60,48 @@ public class Asking : MonoBehaviour
 
                 yield return new WaitForSeconds(.05f);
             }
+
             text.text += "\n";
         }
     }
+
+    // Slider
+    private IEnumerator SliderMove()
+    {
+        while (true)
+        {
+            float hor = Input.GetAxisRaw("Vertical");
+
+            if (hor != 0)
+            {
+                if (hor >= 0 && count != 0) // up
+                {
+                    slider.anchoredPosition += new Vector2(0, 50);
+                    count--;
+                }
+
+                else if (hor <= 0 && count != questionQuiz.question.Count) // down
+                {
+                    slider.anchoredPosition -= new Vector2(0, 50);
+                    count++;
+                }
+            }
+
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+
+    // Normal 
 }
 
 [System.Serializable]
 public class Question
+{
+    public List<string> question;
+}
+
+[System.Serializable]
+public class QuestionQuiz
 {
     public List<string> question;
     public List<bool> correct;
