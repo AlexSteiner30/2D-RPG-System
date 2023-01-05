@@ -17,17 +17,26 @@ public class NPC : MonoBehaviour
     public void ContinueButton()
     {
         GetComponent<Speaking>().StopAllCoroutines();
-        GetComponent<Asking>().StopAllCoroutines();
-        GetComponent<Seller>().StopAllCoroutines();
 
-        if (++GetComponent<NPC>().eventCount < GetComponent<NPC>().events.Length)
+        if (GetComponent<Asking>())
         {
-            GetComponent<NPC>().events[GetComponent<NPC>().eventCount].Invoke();
+            GetComponent<Asking>().StopAllCoroutines();
+        }
+
+        if (GetComponent<Seller>())
+        {
+            GetComponent<Seller>().StopAllCoroutines();
+        }
+
+        if (++eventCount < events.Length)
+        {
+            events[eventCount].Invoke();
         }
 
         else
         {
             GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().dialogueBubble.SetActive(false);
+            eventCount = 0;
         }
     }
 }

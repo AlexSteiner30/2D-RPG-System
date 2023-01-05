@@ -26,6 +26,8 @@ public class Seller : MonoBehaviour
         if (asking.question.options[asking.choosen].ToLower() == "yes")
         {
             gameManager.dialogueBubble.SetActive(false);
+            gameManager.inventory.SetActive(false);
+
             sellingPanel.SetActive(true);
         }
         else
