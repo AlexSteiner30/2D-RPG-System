@@ -10,26 +10,25 @@ public class Asking : MonoBehaviour
     [SerializeField] public Question question;
     [SerializeField] public int choosen;
 
-    GameManager gameManager;
-
+    NPC npc;
     Button continueButton;
     RectTransform slider;
     Text text;
 
     int count = 0;
 
-    private void Awake()
+    private void Start()
     {
-        gameManager = GameObject.FindWithTag("Game Manager").GetComponent<GameManager>();
+        npc = GetComponent<NPC>();
 
-        text = gameManager.message;
-        continueButton = gameManager.continueButton;
-        slider = gameManager.slider;
+        text = npc.gameManager.message;
+        continueButton = npc.gameManager.continueButton;
+        slider = npc.gameManager.slider;
     }
 
     public void Ask(string msg)
     {
-        GetComponent<Speaking>().Speak(msg);
+        npc.speaking.Speak(msg);
 
         continueButton.onClick.RemoveAllListeners();
         continueButton.onClick.AddListener(AskQuestion);
@@ -45,7 +44,7 @@ public class Asking : MonoBehaviour
 
         text.text = "";
 
-        GetComponent<Speaking>().StopAllCoroutines();
+        npc.speaking.StopAllCoroutines();
         StopAllCoroutines();
 
         StartCoroutine(WriteQuestionsCoroutine());
@@ -78,7 +77,7 @@ public class Asking : MonoBehaviour
         
         choosen = count;
 
-        GetComponent<NPC>().ContinueButton();
+        npc.ContinueButton();
     }
 
     // Slider

@@ -8,31 +8,25 @@ public class Seller : MonoBehaviour
 {
     [SerializeField] private GameObject sellingPanel;
 
-    GameManager gameManager;
-
-    Asking asking;
-    Speaking speaking;
+    NPC npc;
 
     private void Start()
     {
-        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
-
-        asking = GetComponent<Asking>();
-        speaking = GetComponent<Speaking>();
+        npc = GetComponent<NPC>();
     }
 
     public void Sell()
     {
-        if (asking.question.options[asking.choosen].ToLower() == "yes")
+        if (npc.asking.question.options[npc.asking.choosen].ToLower() == "yes")
         {
-            gameManager.dialogueBubble.SetActive(false);
-            gameManager.inventory.SetActive(false);
+            npc.gameManager.dialogueBubble.SetActive(false);
+            npc.gameManager.inventory.SetActive(false);
 
             sellingPanel.SetActive(true);
         }
         else
         {
-            speaking.Speak("See you next time");
+            npc.speaking.Speak("See you next time");
         }
     }
 }

@@ -15,9 +15,16 @@ public class PlayerMoney : MonoBehaviour
 
     public void RemoveMoney(int amount)
     {
-        moneyAmount -= amount;
+        if (moneyAmount - amount > 0)
+        {
+            moneyAmount -= amount;
 
-        UpdateMoney();
+            UpdateMoney();
+        }
+        else
+        {
+            Debug.Log("Not enough money");
+        }
     }
 
     public void ReceiveMoney(int amount)

@@ -6,20 +6,22 @@ using UnityEngine.UI;
 
 public class Speaking : MonoBehaviour
 {
-    GameManager gameManager;
+    NPC npc;
+
     Button continueButton;
     Text text;
 
-    private void Awake()
+    private void Start()
     {
-        gameManager = GameObject.FindWithTag("Game Manager").GetComponent<GameManager>();
-        text = gameManager.message;
-        continueButton = gameManager.continueButton;
+        npc = GetComponent<NPC>();
+
+        text = npc.gameManager.message;
+        continueButton = npc.gameManager.continueButton;
     }
 
     public void Speak(string msg)
     {
-        gameManager.dialogueBubble.SetActive(true);
+        npc.gameManager.dialogueBubble.SetActive(true);
 
         text.text = null;
 

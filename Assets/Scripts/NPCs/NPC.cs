@@ -7,8 +7,24 @@ using UnityEngine.Events;
 public class NPC : MonoBehaviour
 {
     [HideInInspector] public int eventCount = 0;
-    public UnityEvent[] events;
-     
+    [SerializeField] public UnityEvent[] events;
+
+    [HideInInspector] public GameManager gameManager;
+    [HideInInspector] public Speaking speaking;
+    [HideInInspector] public Asking asking;
+    [HideInInspector] public Seller seller;
+    [HideInInspector] public Fighter fighter;
+
+    private void Awake()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
+        TryGetComponent<Speaking>(out speaking);
+        TryGetComponent<Asking>(out asking);
+        TryGetComponent<Seller>(out seller);
+        TryGetComponent<Fighter>(out fighter);
+    }
+
     public void InvokeEvents()
     {
         events[0].Invoke();
@@ -16,16 +32,16 @@ public class NPC : MonoBehaviour
 
     public void ContinueButton()
     {
-        GetComponent<Speaking>().StopAllCoroutines();
+        speaking.StopAllCoroutines();
 
-        if (GetComponent<Asking>())
+        if (asking)
         {
-            GetComponent<Asking>().StopAllCoroutines();
+            asking.StopAllCoroutines();
         }
 
-        if (GetComponent<Seller>())
+        if (seller)
         {
-            GetComponent<Seller>().StopAllCoroutines();
+            seller.StopAllCoroutines();
         }
 
         if (++eventCount < events.Length)
