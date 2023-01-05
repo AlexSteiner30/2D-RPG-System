@@ -36,7 +36,6 @@ public class NPC : MonoBehaviour
         else
         {
             GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().dialogueBubble.SetActive(false);
-            eventCount = 0;
         }
     }
 }

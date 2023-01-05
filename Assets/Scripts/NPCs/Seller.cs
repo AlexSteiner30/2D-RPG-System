@@ -29,6 +29,8 @@ public class Seller : MonoBehaviour
             gameManager.inventory.SetActive(false);
 
             sellingPanel.SetActive(true);
+
+            GetComponent<NPC>().eventCount = 0;
         }
         else
         {
