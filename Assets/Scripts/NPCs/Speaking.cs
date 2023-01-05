@@ -6,38 +6,43 @@ using UnityEngine.UI;
 
 public class Speaking : MonoBehaviour
 {
-    [SerializeField] private UnityEvent speakingEvents;
-
     GameManager gameManager;
+    Button continueButton;
     Text text;
 
+    bool done = true;
     private void Awake()
     {
         gameManager = GameObject.FindWithTag("Game Manager").GetComponent<GameManager>();
-        text = gameManager.message.GetComponent<Text>();
-    }
-
-    public void InvokeSpeakingEvents()
-    {
-        speakingEvents.Invoke();
+        text = gameManager.message;
+        continueButton = gameManager.continueButton;
     }
 
     public void Speak(string msg)
     {
         gameManager.dialogueBubble.SetActive(true);
 
-        text = null;
+        text.text = null;
 
         StartCoroutine(SpeakCoroutine(msg));
     }
 
     private IEnumerator SpeakCoroutine(string msg)
     {
-        for(int i = 0; i < msg.Length; i++)
+        continueButton.onClick.RemoveAllListeners();
+        continueButton.onClick.AddListener(ContinueButton);
+
+        for (int i = 0; i < msg.Length; i++)
         {
             text.text += msg[i];
 
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.05f);
         }
+    }
+
+    private void ContinueButton()
+    {
+        StopAllCoroutines();
+        GetComponent<NPC>().events[GetComponent<NPC>().eventCount].Invoke();
     }
 }

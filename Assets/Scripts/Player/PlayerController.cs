@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     {
         if(canInteract && Input.GetKey(KeyCode.E))
         {
-            npc.GetComponent<NPC>().npcEvent.Invoke();
+            npc.GetComponent<NPC>().InvokeEvents();
             canInteract = false;
         }
     }
