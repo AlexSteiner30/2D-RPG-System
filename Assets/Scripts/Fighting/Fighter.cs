@@ -13,7 +13,6 @@ public class Fighter : MonoBehaviour
 
     public void StartFight()
     {
-        npc.gameManager.inventory.SetActive(false);
         npc.gameManager.dialogueBubble.SetActive(false);
 
         npc.gameManager.player.GetComponent<PlayerMovement>().enabled = false;

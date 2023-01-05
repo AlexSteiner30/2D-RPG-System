@@ -20,7 +20,6 @@ public class Seller : MonoBehaviour
         if (npc.asking.question.options[npc.asking.choosen].ToLower() == "yes")
         {
             npc.gameManager.dialogueBubble.SetActive(false);
-            npc.gameManager.inventory.SetActive(false);
 
             sellingPanel.SetActive(true);
         }

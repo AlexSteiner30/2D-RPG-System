@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviour
     public RectTransform slider;
     public Text message;
 
-    [Header("Inventory")]
-    public GameObject inventory;
-
     [Header("Economy")]
     public Text money;
 
