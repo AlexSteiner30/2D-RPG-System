@@ -16,4 +16,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Economy")]
     public Text money;
+
+    [Header("Player")]
+    public GameObject player;
 }
