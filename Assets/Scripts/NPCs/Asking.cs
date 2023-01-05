@@ -31,12 +31,14 @@ public class Asking : MonoBehaviour
     public void AskQuiz(string msg)
     {
         GetComponent<Speaking>().Speak(msg);
+
         continueButton.onClick.RemoveAllListeners();
         continueButton.onClick.AddListener(AskQuestionQuiz);
     }
 
     private void AskQuestionQuiz()
-    {
+    {  
+        slider.anchoredPosition = new Vector2(slider.anchoredPosition.x, 144.66f);
         slider.gameObject.SetActive(true);
 
         text.text = "";
@@ -50,6 +52,9 @@ public class Asking : MonoBehaviour
 
     private IEnumerator WriteQuestionsCoroutine()
     {
+        continueButton.onClick.RemoveAllListeners();
+        continueButton.onClick.AddListener(RevealAnswer);
+
         foreach (string q in questionQuiz.question)
         {
             text.text += "- ";
@@ -62,6 +67,20 @@ public class Asking : MonoBehaviour
             }
 
             text.text += "\n";
+        }
+    }
+
+    private void RevealAnswer()
+    {
+        slider.gameObject.SetActive(false);
+
+        if (questionQuiz.correct[count])
+        {
+            GetComponent<Speaking>().Speak("You were correct!");
+        }
+        else
+        {
+            GetComponent<Speaking>().Speak("You were wrong!");
         }
     }
 
