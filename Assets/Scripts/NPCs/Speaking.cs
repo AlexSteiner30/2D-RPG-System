@@ -42,6 +42,15 @@ public class Speaking : MonoBehaviour
     private void ContinueButton()
     {
         StopAllCoroutines();
-        GetComponent<NPC>().events[++GetComponent<NPC>().eventCount].Invoke();
+
+        if(++GetComponent<NPC>().eventCount < GetComponent<NPC>().events.Length)
+        {
+            GetComponent<NPC>().events[GetComponent<NPC>().eventCount].Invoke();
+        }
+
+        else
+        {
+            gameManager.dialogueBubble.SetActive(false);
+        }
     }
 }
