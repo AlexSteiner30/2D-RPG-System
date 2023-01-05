@@ -10,7 +10,6 @@ public class Speaking : MonoBehaviour
     Button continueButton;
     Text text;
 
-    bool done = true;
     private void Awake()
     {
         gameManager = GameObject.FindWithTag("Game Manager").GetComponent<GameManager>();

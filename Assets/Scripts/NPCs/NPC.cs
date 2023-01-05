@@ -6,9 +6,9 @@ using UnityEngine.Events;
 
 public class NPC : MonoBehaviour
 {
+    [HideInInspector] public int eventCount = 0;
     public UnityEvent[] events;
-    public int eventCount = 0;
-
+     
     public void InvokeEvents()
     {
         events[0].Invoke();
