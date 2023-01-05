@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class Asking : MonoBehaviour
 {
-    [SerializeField] private Question questionNormal;
-    [SerializeField] private QuestionQuiz questionQuiz;
+    [SerializeField] public Question question;
+    [SerializeField] public int choosen;
 
     GameManager gameManager;
 
@@ -27,16 +27,15 @@ public class Asking : MonoBehaviour
         slider = gameManager.slider;
     }
 
-    // Quiz
-    public void AskQuiz(string msg)
+    public void Ask(string msg)
     {
         GetComponent<Speaking>().Speak(msg);
 
         continueButton.onClick.RemoveAllListeners();
-        continueButton.onClick.AddListener(AskQuestionQuiz);
+        continueButton.onClick.AddListener(AskQuestion);
     }
 
-    private void AskQuestionQuiz()
+    private void AskQuestion()
     {  
         slider.anchoredPosition = new Vector2(slider.anchoredPosition.x, 144.66f);
         slider.gameObject.SetActive(true);
@@ -53,9 +52,9 @@ public class Asking : MonoBehaviour
     private IEnumerator WriteQuestionsCoroutine()
     {
         continueButton.onClick.RemoveAllListeners();
-        continueButton.onClick.AddListener(RevealAnswer);
+        continueButton.onClick.AddListener(ReturnAnswer);
 
-        foreach (string q in questionQuiz.question)
+        foreach (string q in question.options)
         {
             text.text += "- ";
 
@@ -70,18 +69,11 @@ public class Asking : MonoBehaviour
         }
     }
 
-    private void RevealAnswer()
+    private void ReturnAnswer()
     {
         slider.gameObject.SetActive(false);
 
-        if (questionQuiz.correct[count])
-        {
-            GetComponent<Speaking>().Speak("You were correct!");
-        }
-        else
-        {
-            GetComponent<Speaking>().Speak("You were wrong!");
-        }
+        choosen = count;
     }
 
     // Slider
@@ -99,7 +91,7 @@ public class Asking : MonoBehaviour
                     count--;
                 }
 
-                else if (hor <= 0 && count != questionQuiz.question.Count) // down
+                else if (hor <= 0 && count != question.options.Count) // down
                 {
                     slider.anchoredPosition -= new Vector2(0, 50);
                     count++;
@@ -116,12 +108,5 @@ public class Asking : MonoBehaviour
 [System.Serializable]
 public class Question
 {
-    public List<string> question;
-}
-
-[System.Serializable]
-public class QuestionQuiz
-{
-    public List<string> question;
-    public List<bool> correct;
+    public List<string> options;
 }
