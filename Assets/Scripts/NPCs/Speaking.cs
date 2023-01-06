@@ -4,16 +4,22 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+[RequireComponent (typeof(AudioSource))]
+
 public class Speaking : MonoBehaviour
 {
-    NPC npc;
+    private AudioSource audioSource;
 
-    Button continueButton;
-    Text text;
+    private const float speakingSpeed = .05f;
+
+    private NPC npc;
+    private Button continueButton;
+    private Text text;
 
     private void Start()
     {
         npc = GetComponent<NPC>();
+        audioSource = GetComponent<AudioSource>();
 
         text = npc.gameManager.message;
         continueButton = npc.gameManager.continueButton;
@@ -26,6 +32,7 @@ public class Speaking : MonoBehaviour
         text.text = null;
 
         StartCoroutine(SpeakCoroutine(msg));
+        StartCoroutine(PlaySound());
     }
 
     private IEnumerator SpeakCoroutine(string msg)
@@ -37,7 +44,21 @@ public class Speaking : MonoBehaviour
         {
             text.text += msg[i];
 
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(speakingSpeed);
+        }
+
+        StopAllCoroutines();
+    }
+
+    private IEnumerator PlaySound()
+    {
+        while (true)
+        {
+            audioSource.Play();
+
+            yield return new WaitForSeconds(.1f);
+
+            audioSource.Stop();
         }
     }
 }
