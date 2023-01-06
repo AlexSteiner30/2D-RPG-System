@@ -14,6 +14,6 @@ public class Item : MonoBehaviour
 
     public void Buy()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMoney>().RemoveMoney(value);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Money>().RemoveMoney(value);
     }
 }

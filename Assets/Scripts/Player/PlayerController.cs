@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    GameObject npc;
+    GameObject interactionGameObject;
     bool canInteract;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);    
+    }
 
     private void Update()
     {
@@ -14,32 +19,32 @@ public class PlayerController : MonoBehaviour
 
     private void Interact()
     {
-        if(canInteract && Input.GetKey(KeyCode.E))
+        if(canInteract && Input.GetKey(KeyCode.Return))
         {
-            npc.GetComponent<NPC>().InvokeEvents();
+            interactionGameObject.GetComponent<InteractableObject>().interaction.Invoke();
             canInteract = false;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<NPC>())
+        if(collision.gameObject.GetComponent<InteractableObject>())
         {
             canInteract = true;
 
-            npc = collision.gameObject;
+            interactionGameObject = collision.gameObject;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<NPC>())
+        if (collision.gameObject.GetComponent<InteractableObject>())
         {
-            collision.gameObject.GetComponent<NPC>().eventCount = 0;
+            collision.gameObject.GetComponent<InteractableObject>().stopInteraction.Invoke();
 
             canInteract = false;
 
-            npc = null;
+            interactionGameObject = null;
         }
     }
 }

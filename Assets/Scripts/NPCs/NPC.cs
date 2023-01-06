@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(InteractableObject))]
+
 public class NPC : MonoBehaviour
 {
     [HideInInspector] public int eventCount = 0;
@@ -28,6 +30,11 @@ public class NPC : MonoBehaviour
     public void InvokeEvents()
     {
         events[0].Invoke();
+    }
+
+    public void StopInteraction()
+    {
+        eventCount = 0;
     }
 
     public void ContinueButton()

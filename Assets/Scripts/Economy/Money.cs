@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoney : MonoBehaviour
+public class Money : MonoBehaviour
 {
-    [SerializeField] private int moneyAmount;
+    [SerializeField] private int moneyCount;
 
     GameManager gameManager;
 
@@ -15,9 +15,9 @@ public class PlayerMoney : MonoBehaviour
 
     public void RemoveMoney(int amount)
     {
-        if (moneyAmount - amount > 0)
+        if (moneyCount - amount > 0)
         {
-            moneyAmount -= amount;
+            moneyCount -= amount;
 
             UpdateMoney();
         }
@@ -29,13 +29,13 @@ public class PlayerMoney : MonoBehaviour
 
     public void ReceiveMoney(int amount)
     {
-        moneyAmount += amount;
+        moneyCount += amount;
 
         UpdateMoney();
     }
 
     private void UpdateMoney()
     {
-        gameManager.money.text = "$ " + moneyAmount.ToString();
+        gameManager.money.text = "$ " + moneyCount.ToString();
     }
 }

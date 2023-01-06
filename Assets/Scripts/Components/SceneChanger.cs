@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+[RequireComponent(typeof(InteractableObject))]
 
 public class SceneChanger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int sceneIndex;
+    [SerializeField] private Vector2 spawnPosition;
+
+    Transform player;
+
+    private void Awake()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeScene()
     {
-        
+        player.transform.position = spawnPosition;
+        SceneManager.LoadScene(sceneIndex);
     }
 }
