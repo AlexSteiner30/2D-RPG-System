@@ -46,7 +46,6 @@ public class Asking : MonoBehaviour
         choosen = 0;
         count = 0;
 
-        slider.anchoredPosition = new Vector2(slider.anchoredPosition.x, 144.66f);
         slider.gameObject.SetActive(true);
 
         text.text = "";

@@ -30,11 +30,17 @@ public class NPC : MonoBehaviour
     public void InvokeEvents()
     {
         events[0].Invoke();
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().enabled = false;
     }
 
     public void StopInteraction()
     {
+        StopAllCoroutines();
+
         eventCount = 0;
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
     }
 
     public void ContinueButton()
@@ -59,6 +65,8 @@ public class NPC : MonoBehaviour
         else
         {
             GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().dialogueBubble.SetActive(false);
+
+            StopInteraction();
         }
     }
 }
