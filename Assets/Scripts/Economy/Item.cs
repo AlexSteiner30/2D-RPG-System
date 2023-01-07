@@ -15,5 +15,7 @@ public class Item : MonoBehaviour
     public void Buy()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<Money>().RemoveMoney(value);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().AddItem(this.gameObject.GetComponent<Item>());
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>().UpdateItems();
     }
 }

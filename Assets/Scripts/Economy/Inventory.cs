@@ -6,13 +6,25 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private List<Item> items = new List<Item>();
 
-    private void AddItem(Item item)
+    public GameObject inventory;
+
+    private void Start()
+    {
+        inventory = GameObject.FindGameObjectWithTag("Inventory");
+    }
+
+    public void AddItem(Item item)
     {
         items.Add(item);
     }
 
-    private void UpdateItems()
+    public void UpdateItems()
     {
+        foreach(Item item in items) 
+        {
+            GameObject itemInstantiated = Instantiate(item.gameObject);
 
+            itemInstantiated.transform.SetParent(inventory.transform);
+        }
     }
 }

@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 1573502154650620731}
   - component: {fileID: 1573502154650620735}
   - component: {fileID: 1573502154650620732}
+  - component: {fileID: 1503901394809550969}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -228,3 +229,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyCount: 34549
+--- !u!114 &1503901394809550969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573502154650620730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09cdadc72b5996c4a95d292587e62716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
