@@ -11,6 +11,7 @@ public class Money : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+        UpdateMoney();
     }
 
     public void RemoveMoney(int amount)
