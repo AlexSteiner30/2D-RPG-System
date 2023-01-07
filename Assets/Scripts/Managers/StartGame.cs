@@ -16,9 +16,7 @@ public class StartGame : MonoBehaviour
 
     private void LoadGame()
     {
-        GameObject spawnedPlayer = Instantiate(player);
-        spawnPosition.transform.position = spawnPosition.position;
-
+        Instantiate(player, spawnPosition.position, Quaternion.identity);
         Instantiate(gameManager);
     }
 }
