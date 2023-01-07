@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
-    [SerializeField] private GameObject gameManager;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject gameManager;
 
-    [SerializeField] private Vector3 spawnPosition;
+    [SerializeField] private Transform spawnPosition;
 
     private void Awake()
     {
-        DontDestroyOnLoad(Instantiate(player, spawnPosition, Quaternion.identity));
-        DontDestroyOnLoad(Instantiate(gameManager));
+        LoadGame();
+    }
 
-        Destroy(this);
+    private void LoadGame()
+    {
+        GameObject spawnedPlayer = Instantiate(player);
+        spawnPosition.transform.position = spawnPosition.position;
+
+        Instantiate(gameManager);
     }
 }

@@ -7,11 +7,6 @@ public class PlayerController : MonoBehaviour
     GameObject interactionGameObject;
     bool canInteract;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);    
-    }
-
     private void Update()
     {
         Interact();

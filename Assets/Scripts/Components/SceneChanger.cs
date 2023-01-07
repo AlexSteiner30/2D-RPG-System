@@ -11,15 +11,20 @@ public class SceneChanger : MonoBehaviour
     [SerializeField] private Vector2 spawnPosition;
 
     Transform player;
+    GameObject gameManager;
 
-    private void Awake()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager");
     }
 
     public void ChangeScene()
     {
+        Scene scene = SceneManager.GetSceneByBuildIndex(sceneIndex);
+
         player.transform.position = spawnPosition;
-        SceneManager.LoadScene(sceneIndex);
+
+        SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
     }
 }
