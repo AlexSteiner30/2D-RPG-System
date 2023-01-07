@@ -18,6 +18,13 @@ public class Speaking : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(LateStart());
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForSeconds(1);
+
         npc = GetComponent<NPC>();
         audioSource = GetComponent<AudioSource>();
 

@@ -17,7 +17,7 @@ public class NPC : MonoBehaviour
     [HideInInspector] public Seller seller;
     [HideInInspector] public Fighter fighter;
 
-    private void Awake()
+    private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
 

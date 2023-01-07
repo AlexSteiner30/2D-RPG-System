@@ -19,6 +19,13 @@ public class Asking : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(LateStart());
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForSeconds(1);
+
         npc = GetComponent<NPC>();
 
         text = npc.gameManager.message;
