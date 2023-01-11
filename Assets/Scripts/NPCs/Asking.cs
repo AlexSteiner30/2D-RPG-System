@@ -84,6 +84,9 @@ public class Asking : MonoBehaviour
         choosen = count;
 
         npc.ContinueButton();
+
+        slider.anchoredPosition.y = 242.363f;
+        count = 0;
     }
 
     // Slider
