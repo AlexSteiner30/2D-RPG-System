@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Inventory");
+        inventory = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>().invetory;
     }
 
     public void AddItem(InventoryItem item)
