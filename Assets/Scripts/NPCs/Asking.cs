@@ -85,7 +85,7 @@ public class Asking : MonoBehaviour
 
         npc.ContinueButton();
 
-        slider.anchoredPosition.y = 242.363f;
+        slider.anchoredPosition = new Vector2(slider.anchoredPosition.x, 242.363f);
         count = 0;
     }
 

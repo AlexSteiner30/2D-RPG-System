@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private List<Item> items = new List<Item>();
+    [SerializeField] private List<InventoryItem> items = new List<InventoryItem>();
 
     public GameObject inventory;
 
@@ -13,18 +15,18 @@ public class Inventory : MonoBehaviour
         inventory = GameObject.FindGameObjectWithTag("Inventory");
     }
 
-    public void AddItem(Item item)
+    public void AddItem(InventoryItem item)
     {
         items.Add(item);
     }
 
     public void UpdateItems()
     {
-        foreach(Item item in items) 
-        {
-            GameObject itemInstantiated = Instantiate(item.gameObject);
+        GameObject itemObject = new GameObject();
 
-            itemInstantiated.transform.SetParent(inventory.transform);
-        }
+        itemObject.AddComponent<Image>();
+        itemObject.GetComponent<Image>().sprite = items[0].image.sprite;
+
+        itemObject.transform.parent = inventory.transform;
     }
 }
