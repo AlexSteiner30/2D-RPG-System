@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private List<InventoryItem> items = new List<InventoryItem>();
+    public List<InventoryItem> items = new List<InventoryItem>();
 
     public GameObject inventory;
 
@@ -25,8 +25,8 @@ public class Inventory : MonoBehaviour
     {
         GameObject itemObject = new GameObject();
 
-        itemObject.AddComponent<Image>();
-        itemObject.GetComponent<Image>().sprite = items[0].image.sprite;
+        //sitemObject.AddComponent<Image>();
+        //itemObject.GetComponent<Image>().sprite = items[0].image;
 
         itemObject.transform.parent = inventory.transform;
     }

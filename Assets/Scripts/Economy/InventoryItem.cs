@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
 public class InventoryItem
 {
-    public float price;
-    public Image image;
+    public int ID = 1;
 }
