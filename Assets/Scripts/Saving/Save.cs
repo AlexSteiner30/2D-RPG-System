@@ -1,28 +1,31 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Serialization.Formatters.Binary;
-using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Save : MonoBehaviour
 {
-    private void Start()
+    private void Update()
     {
-        LoadPlayerPosition();
+        //SaveGame();
+    }
+
+    public void LoadGame()
+    {
+        LoadPlayer();
         LoadInventory();
     }
 
-    private void Update()
+    private void SaveGame()
     {
-        SavePlayerPosition();
+        SavePlayer();
         SaveInventory();
     }
 
-    private void SavePlayerPosition()
+    private void SavePlayer()
     {
-
+        PlayerPrefs.SetInt("Scene Index", SceneManager.GetActiveScene().buildIndex);
     }
 
     private void SaveInventory()
@@ -35,9 +38,9 @@ public class Save : MonoBehaviour
         }
     }
 
-    private void LoadPlayerPosition()
+    private void LoadPlayer()
     {
-
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Scene Index"));
     }
 
     private void LoadInventory()

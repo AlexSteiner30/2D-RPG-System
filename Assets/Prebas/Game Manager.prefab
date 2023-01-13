@@ -1443,6 +1443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3631115864262146065}
   - component: {fileID: 3631115864262146064}
+  - component: {fileID: 1734074763390255177}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Game Manager
@@ -1489,6 +1490,18 @@ MonoBehaviour:
   money: {fileID: 3631115863165214997}
   invetory: {fileID: 5084184080482185568}
   player: {fileID: 0}
+--- !u!114 &1734074763390255177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3631115864262146066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11569a1dd3844e5d863f346d68edc5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3631115864804305773
 GameObject:
   m_ObjectHideFlags: 0

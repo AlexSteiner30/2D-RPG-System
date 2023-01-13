@@ -25,9 +25,6 @@ public class Inventory : MonoBehaviour
     {
         GameObject itemObject = new GameObject();
 
-        //sitemObject.AddComponent<Image>();
-        //itemObject.GetComponent<Image>().sprite = items[0].image;
-
         itemObject.transform.parent = inventory.transform;
     }
 }

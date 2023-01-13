@@ -5,29 +5,24 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] private int value;
+    [SerializeField] private ScriptableItem item;
+
     GameObject player;
 
     private void Awake()
     {
-        GetComponentInChildren<Text>().text = "$ " + value.ToString();
-    }
-
-
-    private void Start()
-    {
         player = GameObject.FindWithTag("Player");
+
+        GetComponentInChildren<Text>().text = "$ " + item.value.ToString();
+        GetComponentInChildren<Image>().sprite = item.image;
     }
 
     public void Buy()
     {
-        InventoryItem item = new InventoryItem();
-        //item.image = this.GetComponent<Image>().sprite;
-        //item.price = value;
-
+        InventoryItem inventoryItem = new InventoryItem();
         
-        player.GetComponent<Money>().RemoveMoney(value);
-        player.GetComponent<Inventory>().AddItem(item);
+        player.GetComponent<Money>().RemoveMoney(item.value);
+        player.GetComponent<Inventory>().AddItem(inventoryItem);
         player.GetComponent<Inventory>().UpdateItems();
     }
 }
