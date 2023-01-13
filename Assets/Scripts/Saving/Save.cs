@@ -6,18 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class Save : MonoBehaviour
 {
-    private void Update()
-    {
-        //SaveGame();
-    }
-
     public void LoadGame()
     {
         LoadPlayer();
         LoadInventory();
     }
 
-    private void SaveGame()
+    public void SaveGame()
     {
         SavePlayer();
         SaveInventory();
