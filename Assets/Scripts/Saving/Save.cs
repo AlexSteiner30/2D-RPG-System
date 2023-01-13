@@ -21,6 +21,7 @@ public class Save : MonoBehaviour
     private void SavePlayer()
     {
         PlayerPrefs.SetInt("Scene Index", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("Money", (int)GameObject.FindWithTag("Player").GetComponent<Money>().ReturnMoney());
     }
 
     private void SaveInventory()
@@ -36,6 +37,7 @@ public class Save : MonoBehaviour
     private void LoadPlayer()
     {
         SceneManager.LoadScene(PlayerPrefs.GetInt("Scene Index"));
+        PlayerPrefs.GetInt("Money");
     }
 
     private void LoadInventory()
@@ -44,11 +46,11 @@ public class Save : MonoBehaviour
         {
             var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
-            List<InventoryItem> items = (List<InventoryItem>)bformatter.Deserialize(stream);
+            List<ScriptableItem> items = (List<ScriptableItem>)bformatter.Deserialize(stream);
 
             foreach (var x in items)
             {
-                print(x.ID);
+                print(x.name);
             }
         }
     }

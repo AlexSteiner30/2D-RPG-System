@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Money : MonoBehaviour
 {
-    [SerializeField] private int moneyCount;
+    [SerializeField] private uint moneyCount;
 
     GameManager gameManager;
 
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<GameManager>();
+
+        moneyCount = (uint)PlayerPrefs.GetInt("Money");
         UpdateMoney();
     }
 
@@ -18,7 +20,7 @@ public class Money : MonoBehaviour
     {
         if (moneyCount - amount > 0)
         {
-            moneyCount -= amount;
+            moneyCount -= (uint)amount;
 
             UpdateMoney();
         }
@@ -30,9 +32,14 @@ public class Money : MonoBehaviour
 
     public void ReceiveMoney(int amount)
     {
-        moneyCount += amount;
+        moneyCount += (uint)amount;
 
         UpdateMoney();
+    }
+
+    public uint ReturnMoney()
+    {
+        return moneyCount;
     }
 
     private void UpdateMoney()

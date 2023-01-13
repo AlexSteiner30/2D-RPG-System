@@ -14,15 +14,13 @@ public class Item : MonoBehaviour
         player = GameObject.FindWithTag("Player");
 
         GetComponentInChildren<Text>().text = "$ " + item.value.ToString();
-        GetComponentInChildren<Image>().sprite = item.image;
+        GetComponentsInChildren<Image>()[1].sprite = item.image;
     }
 
     public void Buy()
-    {
-        InventoryItem inventoryItem = new InventoryItem();
-        
+    {        
         player.GetComponent<Money>().RemoveMoney(item.value);
-        player.GetComponent<Inventory>().AddItem(inventoryItem);
+        player.GetComponent<Inventory>().AddItem(item);
         player.GetComponent<Inventory>().UpdateItems();
     }
 }

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Sword
   value: 100
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 5fd50594014b70e48bd6993443d46b32, type: 3}
