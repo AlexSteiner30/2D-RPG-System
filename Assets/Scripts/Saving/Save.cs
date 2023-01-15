@@ -10,17 +10,21 @@ public class Save : MonoBehaviour
 {
     [SerializeField] private ScriptableItem[] items;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     public void LoadGame()
     {
-        StartCoroutine(IE_LoadGame());
+        LoadPlayer();
+        LoadInventory();
     }
 
     public void SaveGame()
     {
         SavePlayer();
         SaveInventory();
-
-        Debug.Log("Game saved!");
     }
 
     private void SavePlayer()
@@ -45,17 +49,6 @@ public class Save : MonoBehaviour
         }
     }
 
-    private IEnumerator IE_LoadGame()
-    {
-        LoadPlayer();
-
-        yield return new WaitForSeconds(2);
-
-        LoadInventory();
-
-        Debug.Log("Game loaded!");
-    }
-
     private void LoadPlayer()
     {
         SceneManager.LoadScene(PlayerPrefs.GetInt("Scene Index"));
@@ -68,10 +61,13 @@ public class Save : MonoBehaviour
 
         for (int i = 0; i < items.Length; i++)
         {
+            Debug.Log(2);
             if(PlayerPrefs.GetString("Item " + i.ToString()) == "true")
             {
                 inventory.items.Add(items[i]);
             }
         }
+
+        Debug.Log("Game saved!");
     }
 }

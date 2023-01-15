@@ -5,18 +5,16 @@ using UnityEngine;
 public class StartGame : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject gameManager;
 
     [SerializeField] private Transform spawnPosition;
 
-    private void Awake()
+    private void Start()
     {
         LoadGame();
     }
 
     private void LoadGame()
     {
-        Instantiate(player, spawnPosition.position, Quaternion.identity);
-        Instantiate(gameManager);
+        GameObject.FindWithTag("Player").transform.position = spawnPosition.position;
     }
 }
