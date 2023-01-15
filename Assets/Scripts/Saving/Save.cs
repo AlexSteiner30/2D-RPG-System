@@ -1,21 +1,26 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 
 public class Save : MonoBehaviour
 {
+    [SerializeField] private ScriptableItem[] items;
+
     public void LoadGame()
     {
-        LoadPlayer();
-        LoadInventory();
+        StartCoroutine(IE_LoadGame());
     }
 
     public void SaveGame()
     {
         SavePlayer();
         SaveInventory();
+
+        Debug.Log("Game saved!");
     }
 
     private void SavePlayer()
@@ -26,12 +31,29 @@ public class Save : MonoBehaviour
 
     private void SaveInventory()
     {
-        using (Stream file = File.Open(Application.persistentDataPath + "/invetory.dat", FileMode.OpenOrCreate))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
+        Inventory inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
 
-            bf.Serialize(file, GameObject.FindWithTag("Player").GetComponent<Inventory>().items);
+        for(int i = 0; i < items.Length; i++)
+        {
+            for(int j = 0; j < inventory.items.Count; j++)
+            {
+                if (items[i].objectName == inventory.items[i].objectName) // same name == same item
+                {
+                    PlayerPrefs.SetString("Item " + i.ToString(), "true");
+                }
+            }
         }
+    }
+
+    private IEnumerator IE_LoadGame()
+    {
+        LoadPlayer();
+
+        yield return new WaitForSeconds(2);
+
+        LoadInventory();
+
+        Debug.Log("Game loaded!");
     }
 
     private void LoadPlayer()
@@ -42,15 +64,13 @@ public class Save : MonoBehaviour
 
     private void LoadInventory()
     {
-        using (Stream stream = File.Open(Application.persistentDataPath + "/invetory.dat", FileMode.OpenOrCreate))
+        Inventory inventory = GameObject.FindWithTag("Player").GetComponent<Inventory>();
+
+        for (int i = 0; i < items.Length; i++)
         {
-            var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-
-            List<ScriptableItem> items = (List<ScriptableItem>)bformatter.Deserialize(stream);
-
-            foreach (var x in items)
+            if(PlayerPrefs.GetString("Item " + i.ToString()) == "true")
             {
-                print(x.name);
+                inventory.items.Add(items[i]);
             }
         }
     }
