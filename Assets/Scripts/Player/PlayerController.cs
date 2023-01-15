@@ -7,6 +7,11 @@ public class PlayerController : MonoBehaviour
     GameObject interactionGameObject;
     bool canInteract;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     private void Update()
     {
         Interact();

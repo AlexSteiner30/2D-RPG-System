@@ -24,9 +24,11 @@ public class Inventory : MonoBehaviour
     public void UpdateItems()
     {
         GameObject itemObject = new GameObject();
+        itemObject.name = "Item";
 
         itemObject.AddComponent<Image>();
-        itemObject.GetComponent<Image>().sprite = items[0].image;
+        itemObject.GetComponent<Image>().sprite = items[items.Count - 1].image;
+        itemObject.transform.localScale = new Vector2(1, 1);
 
         itemObject.transform.parent = inventory.transform;
     }

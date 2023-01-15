@@ -53,6 +53,8 @@ public class Save : MonoBehaviour
     {
         SceneManager.LoadScene(PlayerPrefs.GetInt("Scene Index"));
         PlayerPrefs.GetInt("Money");
+
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void LoadInventory()
@@ -61,13 +63,13 @@ public class Save : MonoBehaviour
 
         for (int i = 0; i < items.Length; i++)
         {
-            Debug.Log(2);
             if(PlayerPrefs.GetString("Item " + i.ToString()) == "true")
             {
                 inventory.items.Add(items[i]);
+                inventory.UpdateItems();
             }
         }
 
-        Debug.Log("Game saved!");
+        Debug.Log("Game loaded!");
     }
 }
