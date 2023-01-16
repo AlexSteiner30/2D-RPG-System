@@ -19,12 +19,16 @@ public class Save : MonoBehaviour
     {
         LoadPlayer();
         LoadInventory();
+
+        Debug.Log("Game loaded!");
     }
 
     public void SaveGame()
     {
         SavePlayer();
         SaveInventory();
+
+        Debug.Log("Game saved!");
     }
 
     private void SavePlayer()
@@ -69,7 +73,5 @@ public class Save : MonoBehaviour
                 inventory.UpdateItems();
             }
         }
-
-        Debug.Log("Game loaded!");
     }
 }

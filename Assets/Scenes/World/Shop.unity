@@ -3585,7 +3585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6b073d5964e1b429bdc9b6e848c026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 3
+  sceneIndex: 2
 --- !u!61 &1284122407
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5114,7 +5114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1573502154650620730, guid: d52befdb1063340bd888d0ce0d61ddb1, type: 3}
-  gameManager: {fileID: 3631115864262146066, guid: 2cd54678cb3654200bd7399b25b3198f, type: 3}
   spawnPosition: {fileID: 868793831}
 --- !u!4 &1749023570
 Transform:
